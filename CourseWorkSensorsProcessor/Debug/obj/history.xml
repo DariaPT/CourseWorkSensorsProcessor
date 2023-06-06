@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F407VG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -I..\..\..\..\..\Sourc3Repoes\CourseWorkSensorsProcessor\cmsis_lib -I..\..\..\..\..\Sourc3Repoes\CourseWorkSensorsProcessor\cmsis_lib\include -I..\..\..\..\..\Sourc3Repoes\CourseWorkSensorsProcessor\cmsis -I..\..\..\..\..\Sourc3Repoes -I..\..\..\..\..\Sourc3Repoes\CourseWorkSensorsProcessor -I..\..\..\..\..\Sourc3Repoes\CourseWorkSensorsProcessor\cmsis_boot">
+      <target file="stm32f4xx_rcc.o" lastModified="18891ff1d5f">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="18891ec5ee6"/>
+      </target>
+      <target file="system_stm32f4xx.o" lastModified="18891ff1e17">
+         <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="18891ec394f"/>
+      </target>
+      <target file="stm32f4xx_gpio.o" lastModified="18891ff1dac">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="18891ec8d27"/>
+      </target>
+      <target file="main.o" lastModified="188920cda4a">
+         <source file="..\..\..\main.c" lastModified="188920c7ec0"/>
+      </target>
+      <target file="syscalls.o" lastModified="18891ff1f13">
+         <source file="..\..\..\syscalls\syscalls.c" lastModified="18891ebd6e4"/>
+      </target>
+      <target file="startup_stm32f4xx.o" lastModified="18891ff19c3">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="18891ec394c"/>
+      </target>
+   </processor>
+</history>
