@@ -13,22 +13,28 @@
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
 <editor id="org.coocox.welcome.ui.WelcomePage" name="" partName="welcome" title="welcome" tooltip="" workbook="DefaultEditorWorkbook">
-<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">
-<org.coocox.welcome.ui.WelcomePage/>
+<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">&#x0A;<org.coocox.welcome.ui.WelcomePage/>
 </input>
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/Sourc3Repoes/CourseWorkSensorsProcessor/main.c" title="main.c" tooltip="D:/Sourc3Repoes/CourseWorkSensorsProcessor/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CourseWorkSensorsProcessor/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="74" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="762" selectionTopPixel="67"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_gpio.h" partName="stm32f4xx_gpio.h" path="D:/Sourc3Repoes/CourseWorkSensorsProcessor/cmsis_lib/include/stm32f4xx_gpio.h" title="stm32f4xx_gpio.h" tooltip="D:/Sourc3Repoes/CourseWorkSensorsProcessor/cmsis_lib/include/stm32f4xx_gpio.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CourseWorkSensorsProcessor/cmsis_lib/include/stm32f4xx_gpio.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_rcc.h" partName="stm32f4xx_rcc.h" path="D:/Sourc3Repoes/CourseWorkSensorsProcessor/cmsis_lib/include/stm32f4xx_rcc.h" title="stm32f4xx_rcc.h" tooltip="D:/Sourc3Repoes/CourseWorkSensorsProcessor/cmsis_lib/include/stm32f4xx_rcc.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CourseWorkSensorsProcessor/cmsis_lib/include/stm32f4xx_rcc.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="20" selectionOffset="12202" selectionTopPixel="4949"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.c" partName="system_stm32f4xx.c" path="D:/Sourc3Repoes/CourseWorkSensorsProcessor/cmsis_boot/system_stm32f4xx.c" title="system_stm32f4xx.c" tooltip="D:/Sourc3Repoes/CourseWorkSensorsProcessor/cmsis_boot/system_stm32f4xx.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/CourseWorkSensorsProcessor/cmsis_boot/system_stm32f4xx.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4106" selectionTopPixel="1200"/>
 </editor>
 </editors>
 <views>
@@ -40,6 +46,7 @@
 <element path="/CourseWorkSensorsProcessor/cmsis_boot"/>
 <element path="/CourseWorkSensorsProcessor/cmsis_lib"/>
 <element path="/CourseWorkSensorsProcessor/cmsis_lib/include"/>
+<element path="/CourseWorkSensorsProcessor/cmsis_lib/source"/>
 </expanded>
 <selection>
 <element path="/CourseWorkSensorsProcessor/main.c"/>
@@ -50,6 +57,9 @@
 <viewState/>
 </view>
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
+<view id="org.coocox.builder.ui.MoreExampleView" partName="More Examples">
 <viewState/>
 </view>
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
@@ -93,6 +103,7 @@
 <view id="org.coocox.builder.ui.views.ProjectView"/>
 <view id="org.coocox.component.ui.Help"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="org.coocox.builder.ui.MoreExampleView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <fastViewBars/>
 <layout>
@@ -119,21 +130,27 @@
 </presentation>
 </folder>
 </info>
-<info part="org.coocox.builder.ui.exampleView" ratio="0.17810372" ratioLeft="340" ratioRight="1569" relationship="2" relative="org.eclipse.ui.internal.ViewStack@d79c75"/>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@148f7e0" ratio="0.56832695" ratioLeft="890" ratioRight="676" relationship="2" relative="org.coocox.builder.ui.exampleView">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@10dee8c" ratio="0.17810372" ratioLeft="340" ratioRight="1569" relationship="2" relative="org.eclipse.ui.internal.ViewStack@d79c75">
+<folder appearance="2" expanded="2">
+<page content="org.coocox.builder.ui.exampleView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@148f7e0" ratio="0.56832695" ratioLeft="890" ratioRight="676" relationship="2" relative="org.eclipse.ui.internal.ViewStack@10dee8c">
 <folder activePageID="org.coocox.component.ui.Help" appearance="2" expanded="2">
 <page content="org.coocox.component.ui.Help" label="Help"/>
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<page content="org.coocox.builder.ui.MoreExampleView" label="More Examples"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
 <page content="org.coocox.coassistant.view.CoAssistantView" label="LabelNotFound"/>
-<page content="org.coocox.builder.ui.MoreExampleView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
+<part id="2"/>
 </presentation>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.4499205" ratioLeft="283" ratioRight="346" relationship="4" relative="org.coocox.builder.ui.exampleView"/>
+<info part="org.eclipse.ui.editorss" ratio="0.4499205" ratioLeft="283" ratioRight="346" relationship="4" relative="org.eclipse.ui.internal.ViewStack@10dee8c"/>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@160e8a2" ratio="0.3688394" ratioLeft="232" ratioRight="397" relationship="4" relative="org.eclipse.ui.internal.ViewStack@d79c75">
 <folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">
 <page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
@@ -164,6 +181,11 @@
 </editor>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CourseWorkSensorsProcessor/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CourseWorkSensorsProcessor/cmsis_lib/include/stm32f4xx_gpio.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CourseWorkSensorsProcessor/cmsis_boot/system_stm32f4xx.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/CourseWorkSensorsProcessor/cmsis_boot/system_stm32f4xx.c"/>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</editor>
 </editors>
 <item historyLabel="welcome" index="0"/>
 <item historyLabel="Repository" index="1"/>
@@ -201,8 +223,42 @@
 <item historyLabel="stm32f4xx_gpio.h" index="6">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item active="true" historyLabel="main.c" index="5">
+<item historyLabel="main.c" index="5">
 <position info="not_deleted" x="50" y="0"/>
+</item>
+<item historyLabel="main.c" index="5">
+<position info="not_deleted" x="164" y="0"/>
+</item>
+<item historyLabel="system_stm32f4xx.c" index="7">
+<position info="not_deleted" x="8825" y="10"/>
+</item>
+<item historyLabel="main.c" index="5">
+<position info="not_deleted" x="240" y="0"/>
+</item>
+<item historyLabel="system_stm32f4xx.c" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="main.c" index="5">
+<position info="not_deleted" x="163" y="0"/>
+</item>
+<item historyLabel="system_stm32f4xx.c" index="8">
+<position info="not_deleted" x="7735" y="0"/>
+</item>
+<item historyLabel="main.c" index="5">
+<position info="not_deleted" x="163" y="0"/>
+</item>
+<item historyLabel="system_stm32f4xx.c" index="8">
+<position info="not_deleted" x="4106" y="0"/>
+</item>
+<item historyLabel="main.c" index="5">
+<position info="not_deleted" x="663" y="0"/>
+</item>
+<item historyLabel="Configuration" index="9"/>
+<item historyLabel="main.c" index="5">
+<position info="not_deleted" x="762" y="0"/>
+</item>
+<item active="true" historyLabel="main.c" index="5">
+<position info="not_deleted" x="762" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -211,6 +267,17 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
+<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor" name="" tooltip="">
+<persistable>
+<org.coocox.builder.ui.editors.ConfigEditor/>
+</persistable>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.c" tooltip="CourseWorkSensorsProcessor/cmsis_boot/system_stm32f4xx.c">
+<persistable path="/CourseWorkSensorsProcessor/cmsis_boot/system_stm32f4xx.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_rcc.h" tooltip="CourseWorkSensorsProcessor/cmsis_lib/include/stm32f4xx_rcc.h">
+<persistable path="/CourseWorkSensorsProcessor/cmsis_lib/include/stm32f4xx_rcc.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_gpio.h" tooltip="CourseWorkSensorsProcessor/cmsis_lib/include/stm32f4xx_gpio.h">
 <persistable path="/CourseWorkSensorsProcessor/cmsis_lib/include/stm32f4xx_gpio.h"/>
 </file>
@@ -218,13 +285,20 @@
 <persistable path="/CourseWorkSensorsProcessor/main.c"/>
 </file>
 <file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
-<persistable>
-<subPage/>
+<persistable>&#x0A;<subPage/>
 </persistable>
 </file>
-<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.welcome.ui.WelcomePage" name="" tooltip="">
-<persistable>
-<org.coocox.welcome.ui.WelcomePage/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="CourseWorkSensorsProcessorCooCox/main.c">
+<persistable path="/CourseWorkSensorsProcessorCooCox/main.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_gpio.h" tooltip="CourseWorkSensorsProcessor/cmsis_lib/include/stm32f4xx_gpio.h">
+<persistable path="/CourseWorkSensorsProcessor/cmsis_lib/include/stm32f4xx_gpio.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="CourseWorkSensorsProcessor/main.c">
+<persistable path="/CourseWorkSensorsProcessor/main.c"/>
+</file>
+<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
+<persistable>&#x0A;<subPage/>
 </persistable>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="CourseWorkSensorsProcessorCooCox/main.c">
