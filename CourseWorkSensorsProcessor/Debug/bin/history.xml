@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -g -nostartfiles -Map=CourseWorkSensorsProcessor.map -O0 --gc-sections -LD:\CooCox\CoIDE\configuration\ProgramData\CourseWorkSensorsProcessor -TD:\CooCox\CoIDE\configuration\ProgramData\CourseWorkSensorsProcessor/link.ld -g">
-      <target file="CourseWorkSensorsProcessor.elf" lastModified="188920cdc32">
+      <target file="CourseWorkSensorsProcessor.elf" lastModified="18897419312">
          <source file="..\obj\startup_stm32f4xx.o" lastModified="18891ff19c3"/>
-         <source file="..\obj\main.o" lastModified="188920cda4a"/>
+         <source file="..\obj\main.o" lastModified="1889730e4ba"/>
          <source file="..\obj\stm32f4xx_rcc.o" lastModified="18891ff1d5f"/>
          <source file="..\obj\stm32f4xx_gpio.o" lastModified="18891ff1dac"/>
-         <source file="..\obj\system_stm32f4xx.o" lastModified="18891ff1e17"/>
+         <source file="..\obj\system_stm32f4xx.o" lastModified="18897417d94"/>
       </target>
    </processor>
 </history>
