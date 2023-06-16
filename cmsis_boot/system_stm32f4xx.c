@@ -60,7 +60,7 @@
   *-----------------------------------------------------------------------------
   *        PLL_M                                  | 8
   *-----------------------------------------------------------------------------
-  *        PLL_N                                  | 200
+  *        PLL_N                                  | 336
   *-----------------------------------------------------------------------------
   *        PLL_P                                  | 2
   *-----------------------------------------------------------------------------
@@ -146,14 +146,14 @@
 
 /************************* PLL Parameters *************************************/
 /* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N */
-#define PLL_M      8
-#define PLL_N      200
+#define PLL_M      4//25 <-- Modified from original value to match a 8Mhz external oscillator instead of 25
+#define PLL_N      72
 
 /* SYSCLK = PLL_VCO / PLL_P */
 #define PLL_P      2
 
 /* USB OTG FS, SDIO and RNG Clock =  PLL_VCO / PLLQ */
-#define PLL_Q      7
+#define PLL_Q      3
 
 /******************************************************************************/
 
@@ -173,7 +173,7 @@
   * @{
   */
 
-  uint32_t SystemCoreClock = 168000000;
+  uint32_t SystemCoreClock = 100000000;
 
   __I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
 
