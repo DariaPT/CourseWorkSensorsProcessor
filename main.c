@@ -11,7 +11,7 @@
 #include "usbd_desc.h"
 #include "usbd_cdc_vcp.h"
 #include "usb_dcd_int.h"
-
+#include "stm32f4xx_adc.h"
 volatile uint32_t ticker, downTicker;
 
 /*
@@ -48,6 +48,104 @@ void OTG_FS_WKUP_IRQHandler(void);
 }
 #endif
 
+//void adc_init(void)
+//{
+//	ADC_InitTypeDef  ADC_InitStructure;
+//
+//	/* PCLK2 is the APB2 clock */
+//	/* ADCCLK = PCLK2/6 = 72/6 = 12MHz*/
+//	//RCC_ADCCLKConfig(RCC_PCLK2_Div6);
+//
+//	/* Enable ADC1 clock so that we can talk to it */
+//	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
+//	/* Put everything back to power-on defaults */
+//	ADC_DeInit();
+//
+//	/* Disable the scan conversion so we do one at a time */
+//	ADC_InitStructure.ADC_ScanConvMode = DISABLE;
+//	/* Don't do continuous conversions - do them on demand */
+//	ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;
+//	/* Start conversion by software, not an external trigger */
+//	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
+//	/* Conversions are 12 bit - put them in the lower 12 bits of the result */
+//	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
+//	/* Say how many channels would be used by the sequencer */
+//	ADC_InitStructure.ADC_NbrOfChannel = 1;
+//
+//	/* Now do the setup */
+//	ADC_Init(ADC1, &ADC_InitStructure);
+//	/* Enable ADC1 */
+//	ADC_Cmd(ADC1, ENABLE);
+//
+//	/* Enable ADC1 reset calibaration register */
+//	ADC_ResetCalibration(ADC1);
+//	/* Check the end of ADC1 reset calibration register */
+//	while(ADC_GetResetCalibrationStatus(ADC1));
+//	/* Start ADC1 calibaration */
+//	ADC_StartCalibration(ADC1);
+//	/* Check the end of ADC1 calibration */
+//	while(ADC_GetCalibrationStatus(ADC1));
+//}
+
+void adc_init(void)
+{
+  ADC_InitTypeDef     ADC_InitStructure;
+  GPIO_InitTypeDef    GPIO_InitStructure;
+
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 ;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+  ADC_DeInit();
+
+  ADC_StructInit(&ADC_InitStructure);
+
+  ADC_InitStructure.ADC_Resolution = ADC_Resolution_12b;
+  ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
+  ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
+  ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
+  ADC_Init(ADC1, &ADC_InitStructure);
+
+  ADC_RegularChannelConfig(ADC1, ADC_Channel_0 , 1, ADC_SampleTime_144Cycles);
+//  ADC_GetCalibrationFactor(ADC1);
+  ADC_Cmd(ADC1, ENABLE);
+
+  /*
+#define ADC_FLAG_AWD                               ((uint8_t)0x01)
+#define ADC_FLAG_EOC                               ((uint8_t)0x02)
+#define ADC_FLAG_JEOC                              ((uint8_t)0x04)
+#define ADC_FLAG_JSTRT                             ((uint8_t)0x08)
+#define ADC_FLAG_STRT                              ((uint8_t)0x10)
+#define ADC_FLAG_OVR                               ((uint8_t)0x20)
+*/
+  while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_STRT));
+
+  ADC_SoftwareStartConv(ADC1);
+}
+
+
+u16 read_adc_1(u8 channel)
+{
+//	ADC_RegularChannelConfig(ADC1, channel, 1, ADC_SampleTime_1Cycles5);
+//	// Start the conversion
+//	ADC_SoftwareStartConvCmd(ADC1, ENABLE);
+//	// Wait until conversion completion
+//	while(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
+	// Get the conversion value
+	return ADC_GetConversionValue(ADC1);
+}
+
+u16 read_adc_chan1(void)
+{
+	while(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
+	    return ADC_GetConversionValue(ADC1);
+
+	return 0;
+}
 
 
 int main(void)
@@ -57,6 +155,7 @@ int main(void)
 
 	/* Initialize USB, IO, SysTick, and all those other things you do in the morning */
 	init();
+
 
 
 	while (1)
@@ -125,6 +224,8 @@ void init()
 	            &USR_desc,
 	            &USBD_CDC_cb,
 	            &USR_cb);
+
+	adc_init();
 
 	return;
 }

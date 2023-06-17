@@ -100,6 +100,7 @@
     <File name="usb_conf/usbd_conf.h" path="usb_conf/usbd_conf.h" type="1"/>
     <File name="cmsis/core_cm4.h" path="cmsis/core_cm4.h" type="1"/>
     <File name="cmsis_lib/source/misc.c" path="cmsis_lib/source/misc.c" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_tim.h" path="cmsis_lib/include/stm32f4xx_tim.h" type="1"/>
     <File name="usb_lib/otg" path="" type="2"/>
     <File name="usb_lib/core/usbd_def.h" path="usb_lib/core/usbd_def.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_adc.c" path="cmsis_lib/source/stm32f4xx_adc.c" type="1"/>
@@ -132,6 +133,7 @@
     <File name="cmsis" path="" type="2"/>
     <File name="cmsis_lib" path="" type="2"/>
     <File name="usb_lib/core/usbd_req.h" path="usb_lib/core/usbd_req.h" type="1"/>
+    <File name="cmsis_lib/source/stm32f4xx_tim.c" path="cmsis_lib/source/stm32f4xx_tim.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_gpio.h" path="cmsis_lib/include/stm32f4xx_gpio.h" type="1"/>
     <File name="usb_lib/otg/usb_core.h" path="usb_lib/otg/usb_core.h" type="1"/>
     <File name="usb_lib/otg/usb_dcd.c" path="usb_lib/otg/usb_dcd.c" type="1"/>
