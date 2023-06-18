@@ -12,6 +12,11 @@
 #include "usbd_cdc_vcp.h"
 #include "usb_dcd_int.h"
 #include "stm32f4xx_adc.h"
+
+#include <stdio.h>
+//#include <stdlib.h>
+#include <stdarg.h>
+
 volatile uint32_t ticker, downTicker;
 
 /*
@@ -86,6 +91,29 @@ void OTG_FS_WKUP_IRQHandler(void);
 //	/* Check the end of ADC1 calibration */
 //	while(ADC_GetCalibrationStatus(ADC1));
 //}
+
+// Почему-то линковщик ругается
+ void usb_printf(char* format, ...)
+ {
+	 static char usbOutputBuf[512] = { 0 };
+
+	 va_list args;
+	 va_start(args, format);
+
+	 vsnprintf(usbOutputBuf, 100, format, args);
+
+	 va_end(args);
+   // ...
+ }
+
+ void usb_print_adc_value(u16 adcRawValue)
+ {
+	 static char usbOutputBuf[512] = { 0 };
+	 //
+	 snprintf(usbOutputBuf, "ADC=%d\r\n", adcRawValue);
+
+	 VCP_send_str(usbOutputBuf);
+ }
 
 void adc_init(void)
 {
@@ -163,6 +191,10 @@ int main(void)
 		/* Blink the orange LED at 1Hz */
 		if (500 == ticker)
 		{
+			u16 adcRawValue = read_adc_chan1();
+
+			usb_print_adc_value(adcRawValue);
+			usb_printf("FUCK IT %d", 123);
 			GPIOD->BSRRH = GPIO_Pin_13;
 		}
 		else if (1000 == ticker)
@@ -180,7 +212,6 @@ int main(void)
 		if (VCP_get_char(&theByte))
 		{
 			VCP_put_char(theByte);
-			VCP_send_str("HULK TUT TAK MALO?");
 
 			GPIOD->BSRRL = GPIO_Pin_12;
 			downTicker = 10;
