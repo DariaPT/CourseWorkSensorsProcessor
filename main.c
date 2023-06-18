@@ -17,8 +17,12 @@
 //#include <stdlib.h>
 #include <stdarg.h>
 
-volatile uint32_t ticker, downTicker;
+#define ADC_POLL_PERIOD_SEC 2
 
+volatile uint32_t ticker;
+volatile uint32_t secSincePowerOn = 0;
+
+uint32_t lastAdcPollTimeSec = 0;
 /*
  * The USB data must be 4 byte aligned if DMA is enabled. This macro handles
  * the alignment, if necessary (it's actually magic, but don't tell anyone).
@@ -100,19 +104,21 @@ void OTG_FS_WKUP_IRQHandler(void);
 	 va_list args;
 	 va_start(args, format);
 
-	 vsnprintf(usbOutputBuf, 100, format, args);
+	 vsnprintf(usbOutputBuf, sizeof(usbOutputBuf), format, args);
 
+	 VCP_send_str(usbOutputBuf);
 	 va_end(args);
+
    // ...
  }
 
  void usb_print_adc_value(u16 adcRawValue)
  {
-	 static char usbOutputBuf[512] = { 0 };
-	 //
-	 snprintf(usbOutputBuf, "ADC=%d\r\n", adcRawValue);
-
-	 VCP_send_str(usbOutputBuf);
+//	 static char usbOutputBuf[512] = { 0 };
+//	 //
+//	 snprintf(usbOutputBuf,sizeof(usbOutputBuf), "ADC=%d\r\n", adcRawValue);
+//
+//	 VCP_send_str(usbOutputBuf);
  }
 
 void adc_init(void)
@@ -184,41 +190,17 @@ int main(void)
 	/* Initialize USB, IO, SysTick, and all those other things you do in the morning */
 	init();
 
-
-
 	while (1)
 	{
-		/* Blink the orange LED at 1Hz */
-		if (500 == ticker)
-		{
-			u16 adcRawValue = read_adc_chan1();
+		uint32_t timeSinceLastAdcPollSec = secSincePowerOn - lastAdcPollTimeSec;
 
-			usb_print_adc_value(adcRawValue);
-			usb_printf("FUCK IT %d", 123);
-			GPIOD->BSRRH = GPIO_Pin_13;
-		}
-		else if (1000 == ticker)
+		if(timeSinceLastAdcPollSec >= ADC_POLL_PERIOD_SEC)
 		{
-			ticker = 0;
-			GPIOD->BSRRL = GPIO_Pin_13;
-		}
+			//		u16 adcRawValue = read_adc_chan1();
+			u16 adcRawValue = ticker % 100;
+			usb_printf("1(h)=%d {%d};\r\n", adcRawValue, secSincePowerOn);
 
-
-		/* If there's data on the virtual serial port:
-		 *  - Echo it back
-		 *  - Turn the green LED on for 10ms
-		 */
-		uint8_t theByte;
-		if (VCP_get_char(&theByte))
-		{
-			VCP_put_char(theByte);
-
-			GPIOD->BSRRL = GPIO_Pin_12;
-			downTicker = 10;
-		}
-		if (0 == downTicker)
-		{
-			GPIOD->BSRRH = GPIO_Pin_12;
+			lastAdcPollTimeSec = secSincePowerOn;
 		}
 	}
 
@@ -256,7 +238,7 @@ void init()
 	            &USBD_CDC_cb,
 	            &USR_cb);
 
-	adc_init();
+	// adc_init();
 
 	return;
 }
@@ -288,14 +270,10 @@ void ColorfulRingOfDeath(void)
 /*
  * Interrupt Handlers
  */
-
 void SysTick_Handler(void)
 {
 	ticker++;
-	if (downTicker > 0)
-	{
-		downTicker--;
-	}
+	secSincePowerOn = ticker / 1000;
 }
 
 void NMI_Handler(void)       {}
