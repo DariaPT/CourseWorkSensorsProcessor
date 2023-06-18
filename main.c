@@ -156,7 +156,6 @@ void adc_init(void)
 #define ADC_FLAG_STRT                              ((uint8_t)0x10)
 #define ADC_FLAG_OVR                               ((uint8_t)0x20)
 */
-  while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_STRT));
 
   ADC_SoftwareStartConv(ADC1);
 }
@@ -196,9 +195,9 @@ int main(void)
 
 		if(timeSinceLastAdcPollSec >= ADC_POLL_PERIOD_SEC)
 		{
-			//		u16 adcRawValue = read_adc_chan1();
-			u16 adcRawValue = ticker % 100;
-			usb_printf("1(h)=%d {%d};\r\n", adcRawValue, secSincePowerOn);
+			u16 adcRawValue = read_adc_chan1();
+//			u16 adcRawValue = ticker % 100;
+			usb_printf("1(V)=%.2f {%d};\r\n", adcRawValue * 0.000806f, secSincePowerOn);
 
 			lastAdcPollTimeSec = secSincePowerOn;
 		}
@@ -238,7 +237,7 @@ void init()
 	            &USBD_CDC_cb,
 	            &USR_cb);
 
-	// adc_init();
+	adc_init();
 
 	return;
 }
