@@ -37,6 +37,10 @@ int main(void)
 
 	cust_init();
 
+	u8 Rh,RhDec,Temp,TempDec,ChkSum;
+	double devPoint;
+	char str[20];
+
 	while (1)
 	{
 		uint32_t timeSinceLastAdcPollSec = secSincePowerOn - lastAdcPollTimeSec;
@@ -45,7 +49,13 @@ int main(void)
 		{
 			u16 adcRawValue = cust_adc_read_chan1();
 
-			usb_printer_printf("1(V)=%.1f;\r\n", adcRawValue * 0.000806f, secSincePowerOn);
+//			DHT11Read(&Rh,&RhDec,&Temp,&TempDec,&ChkSum);
+//			devPoint=dewPointFast(Temp,Rh);
+
+//			sprintf(str, "Value= %dRh %d %dC %d %d %fDwP %fFah %fKel\r\n",Rh,RhDec,Temp,TempDec,ChkSum,devPoint,Fahrenheit(Temp),Kelvin(Temp));
+
+//			usb_printer_printf("1(V)=%.1f;\r\n", adcRawValue * 0.000806f, secSincePowerOn);
+			usb_printer_printf("Value= %dRh %d %dC %d %d %fDwP %fFah %fKel\r\n", Rh,RhDec,Temp,TempDec,ChkSum,devPoint,Fahrenheit(Temp),Kelvin(Temp));
 
 			lastAdcPollTimeSec = secSincePowerOn;
 		}
@@ -73,6 +83,7 @@ void cust_init()
 
 	usb_printer_init();
 	cust_adc_init();
+	DHT11initTIM2();
 
 	return;
 }
