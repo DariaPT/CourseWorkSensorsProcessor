@@ -106,14 +106,8 @@ int main(void)
 			Pht_Div = PHT_10LX_R/Pht_R;
 			Pht_Temp = ((0.42*log(Pht_Div))/(PHT_GAMMA)) + 1;
 			/* illuminance calc */
-
-			Pht_Lux = 1;
-			for	(int i = 0; i < Pht_Temp; i++)
-			{
-				Pht_Lux *= 10;
-			}
 			// pow не работает
-//			Pht_Lux = pow(10, Pht_Temp);
+			Pht_Lux = pow(10, Pht_Temp);
 
 //			DH T11Read(&Rh,&RhDec,&Temp,&TempDec,&ChkSum);
 //			devPoint=dewPointFast(Temp,Rh);
