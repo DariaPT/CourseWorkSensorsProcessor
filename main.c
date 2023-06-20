@@ -9,8 +9,22 @@
 #include "cust_lib/cust_adc.h"
 #include "cust_lib/usb_printer.h"
 
+#include "math.h"
+
 #define ADC_POLL_PERIOD_SEC 2
 #define CUST_PACKET_SYMBOL 0xFFFF
+
+/* Photocell constants */
+#define PHT_UP_R 10000.0F
+#define PHT_10LX_R 50000.0F
+#define PHT_GAMMA 0.8F
+
+/* Photocell vars */
+uint32_t Pht_R;
+float Pht_Div;
+float Pht_Temp;
+uint32_t Pht_Lux;
+
 
 volatile uint32_t ticker;
 volatile uint32_t secSincePowerOn = 0;
@@ -87,15 +101,30 @@ int main(void)
 		{
 			u16 adcRawValue = cust_adc_read_chan1();
 
-			DH T11Read(&Rh,&RhDec,&Temp,&TempDec,&ChkSum);
-			devPoint=dewPointFast(Temp,Rh);
+			Pht_R = ((PHT_UP_R)/((4095.0)/adcRawValue-1));
+			/* internim calcs */
+			Pht_Div = PHT_10LX_R/Pht_R;
+			Pht_Temp = ((0.42*log(Pht_Div))/(PHT_GAMMA)) + 1;
+			/* illuminance calc */
+
+			Pht_Lux = 1;
+			for	(int i = 0; i < Pht_Temp; i++)
+			{
+				Pht_Lux *= 10;
+			}
+			// pow не работает
+//			Pht_Lux = pow(10, Pht_Temp);
+
+//			DH T11Read(&Rh,&RhDec,&Temp,&TempDec,&ChkSum);
+//			devPoint=dewPointFast(Temp,Rh);
 
 //			sprintf(str, "Value= %dRh %d %dC %d %d %fDwP %fFah %fKel\r\n",Rh,RhDec,Temp,TempDec,ChkSum,devPoint,Fahrenheit(Temp),Kelvin(Temp));
 
 //			usb_printer_printf("1(V)=%.1f;\r\n", adcRawValue * 0.000806f, secSincePowerOn);
-			usb_printer_printf("Value= %dRh %d %dC %d %d %fDwP %fFah %fKel\r\n", Rh,RhDec,Temp,TempDec,ChkSum,devPoint,Fahrenheit(Temp),Kelvin(Temp));
+//			usb_printer_printf("Value= %dRh %d %dC %d %d %fDwP %fFah %fKel\r\n", Rh,RhDec,Temp,TempDec,ChkSum,devPoint,Fahrenheit(Temp),Kelvin(Temp));
 
-			usb_printer_printf("boom: %lu; tickers=%lu \r\n", get_timer_cnt(), ticker);
+//			usb_printer_printf("boom: %lu; tickers=%lu \r\n", get_timer_cnt(), ticker);
+			usb_printer_printf("Lux=%lu\r\n", Pht_Lux);
 
 			lastAdcPollTimeSec = secSincePowerOn;
 		}
