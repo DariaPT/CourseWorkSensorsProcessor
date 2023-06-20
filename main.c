@@ -43,11 +43,11 @@ __attribute__((packed));
 
 
 struct CustPacket custPacket = {
-		.prefix = CUST_PACKET_SYMBOL,
-		.temperature = 0,
-		.humidity = 0,
-		.light = 0,
-		.postfix = CUST_PACKET_SYMBOL
+	.prefix = CUST_PACKET_SYMBOL,
+	.temperature = 0,
+	.humidity = 0,
+	.light = 0,
+	.postfix = CUST_PACKET_SYMBOL
 };
 
 int main(void)
@@ -63,34 +63,42 @@ int main(void)
 
 	while (1)
 	{
-		uint8_t theByte;
-		if (VCP_get_char(&theByte))
-		{
-//			DHT11Read(&Rh,&RhDec,&Temp,&TempDec,&ChkSum);
-			//			devPoint=dewPointFast(Temp,Rh);
-			custPacket.temperature = 666;
-			custPacket.humidity = 666;
-			custPacket.light = 666;
-
-			usb_send_bytes((u8*)&custPacket, sizeof(custPacket));
-		}
-
-//		uint32_t timeSinceLastAdcPollSec = secSincePowerOn - lastAdcPollTimeSec;
-//
-//		if(timeSinceLastAdcPollSec >= ADC_POLL_PERIOD_SEC)
+		/////////////////////////////////////
+//		uint8_t theByte;
+//		if (VCP_get_char(&theByte))
 //		{
-//			u16 adcRawValue = cust_adc_read_chan1();
+//			//	DHT11Read(&Rh,&RhDec,&Temp,&TempDec,&ChkSum);
+//			//			devPoint=dewPointFast(Temp,Rh);
 //
-////			DHT11Read(&Rh,&RhDec,&Temp,&TempDec,&ChkSum);
-////			devPoint=dewPointFast(Temp,Rh);
+//			static u32 value = 255;
+//			custPacket.temperature = value;
+//			custPacket.humidity = value;
+//			custPacket.light = value;
 //
-////			sprintf(str, "Value= %dRh %d %dC %d %d %fDwP %fFah %fKel\r\n",Rh,RhDec,Temp,TempDec,ChkSum,devPoint,Fahrenheit(Temp),Kelvin(Temp));
+//			value++;
 //
-////			usb_printer_printf("1(V)=%.1f;\r\n", adcRawValue * 0.000806f, secSincePowerOn);
-//			usb_printer_printf("Value= %dRh %d %dC %d %d %fDwP %fFah %fKel\r\n", Rh,RhDec,Temp,TempDec,ChkSum,devPoint,Fahrenheit(Temp),Kelvin(Temp));
-//
-//			lastAdcPollTimeSec = secSincePowerOn;
+//			usb_send_bytes((u8*)&custPacket, sizeof(custPacket));
 //		}
+		///////////////////////////////////////
+
+		uint32_t timeSinceLastAdcPollSec = secSincePowerOn - lastAdcPollTimeSec;
+
+		if(timeSinceLastAdcPollSec >= ADC_POLL_PERIOD_SEC)
+		{
+			u16 adcRawValue = cust_adc_read_chan1();
+
+			DH T11Read(&Rh,&RhDec,&Temp,&TempDec,&ChkSum);
+			devPoint=dewPointFast(Temp,Rh);
+
+//			sprintf(str, "Value= %dRh %d %dC %d %d %fDwP %fFah %fKel\r\n",Rh,RhDec,Temp,TempDec,ChkSum,devPoint,Fahrenheit(Temp),Kelvin(Temp));
+
+//			usb_printer_printf("1(V)=%.1f;\r\n", adcRawValue * 0.000806f, secSincePowerOn);
+			usb_printer_printf("Value= %dRh %d %dC %d %d %fDwP %fFah %fKel\r\n", Rh,RhDec,Temp,TempDec,ChkSum,devPoint,Fahrenheit(Temp),Kelvin(Temp));
+
+			usb_printer_printf("boom: %lu; tickers=%lu \r\n", get_timer_cnt(), ticker);
+
+			lastAdcPollTimeSec = secSincePowerOn;
+		}
 	}
 	return 0;
 }

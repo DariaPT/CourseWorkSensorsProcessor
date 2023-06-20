@@ -20,7 +20,6 @@ __ALIGN_BEGIN USB_OTG_CORE_HANDLE  USB_OTG_dev __ALIGN_END;
 void OTG_FS_IRQHandler(void);
 void OTG_FS_WKUP_IRQHandler(void);
 
-
 // Почему-то линковщик ругается
 void usb_send_bytes(u8 *sendBuf, u32 size)
 {

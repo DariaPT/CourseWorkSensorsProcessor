@@ -11,17 +11,17 @@
 #include "dh11_driver.h"
 #include "math.h"
 
-#define GPIO_PORT	GPIOA
+#define GPIO_PORT	GPIOD
 #define GPIO_PIN	GPIO_Pin_1
-#define GPIO_RCC	RCC_AHB1Periph_GPIOA
+#define GPIO_RCC	RCC_AHB1Periph_GPIOD
 
 GPIO_InitTypeDef  GPIO_InitStructure;
 TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
 
 void DHT11initTIM2(void){
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
-	TIM_TimeBaseStructure.TIM_Period = 84000000-1;//1us
-	TIM_TimeBaseStructure.TIM_Prescaler =84;		//1us counter
+	TIM_TimeBaseStructure.TIM_Period = 72000000-1;//1us
+	TIM_TimeBaseStructure.TIM_Prescaler = 72;		//1us counter
 	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
 	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
@@ -64,6 +64,11 @@ void DHT11_delay_us(int us){
 float Fahrenheit(u8 celsius)
 {
         return 1.8 * celsius + 32;
+}
+
+u32 get_timer_cnt()
+{
+	return TIM2->CNT;
 }
 
 float Kelvin(u8 celsius)
