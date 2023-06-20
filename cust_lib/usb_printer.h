@@ -5,6 +5,7 @@
 
 void usb_printer_printf(char* format, ...);
 void usb_printer_init();
+void usb_send_bytes(u8 *sendBuf, u32 size);
 
 #endif
 

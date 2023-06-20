@@ -87,9 +87,9 @@
     <File name="usb_lib/otg/usb_regs.h" path="usb_lib/otg/usb_regs.h" type="1"/>
     <File name="cust_lib/dh11_driver.c" path="cust_lib/dh11_driver.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_usart.c" path="cmsis_lib/source/stm32f4xx_usart.c" type="1"/>
+    <File name="usb_lib/otg/usb_defines.h" path="usb_lib/otg/usb_defines.h" type="1"/>
     <File name="usb_lib/core/usbd_req.c" path="usb_lib/core/usbd_req.c" type="1"/>
     <File name="usb_lib/cdc" path="" type="2"/>
-    <File name="usb_lib/otg/usb_defines.h" path="usb_lib/otg/usb_defines.h" type="1"/>
     <File name="usb_lib/cdc/usbd_cdc_vcp.c" path="usb_lib/cdc/usbd_cdc_vcp.c" type="1"/>
     <File name="cmsis_boot" path="" type="2"/>
     <File name="cmsis_lib/include/stm32f4xx_usart.h" path="cmsis_lib/include/stm32f4xx_usart.h" type="1"/>
@@ -104,9 +104,9 @@
     <File name="cust_lib" path="" type="2"/>
     <File name="cmsis_lib/source/misc.c" path="cmsis_lib/source/misc.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_adc.c" path="cmsis_lib/source/stm32f4xx_adc.c" type="1"/>
-    <File name="usb_lib/core/usbd_def.h" path="usb_lib/core/usbd_def.h" type="1"/>
-    <File name="usb_lib/otg" path="" type="2"/>
     <File name="cmsis_lib/include/stm32f4xx_tim.h" path="cmsis_lib/include/stm32f4xx_tim.h" type="1"/>
+    <File name="usb_lib/otg" path="" type="2"/>
+    <File name="usb_lib/core/usbd_def.h" path="usb_lib/core/usbd_def.h" type="1"/>
     <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
     <File name="usb_lib" path="" type="2"/>
     <File name="cmsis_lib/source" path="" type="2"/>
@@ -120,8 +120,8 @@
     <File name="usb_lib/core/usbd_core.c" path="usb_lib/core/usbd_core.c" type="1"/>
     <File name="usb_lib/core" path="" type="2"/>
     <File name="cmsis_boot/startup/startup_stm32f4xx.c" path="cmsis_boot/startup/startup_stm32f4xx.c" type="1"/>
-    <File name="usb_conf/usb_conf.h" path="usb_conf/usb_conf.h" type="1"/>
     <File name="usb_conf" path="" type="2"/>
+    <File name="usb_conf/usb_conf.h" path="usb_conf/usb_conf.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_rcc.c" path="cmsis_lib/source/stm32f4xx_rcc.c" type="1"/>
     <File name="usb_lib/otg/usb_core.c" path="usb_lib/otg/usb_core.c" type="1"/>
     <File name="cmsis/core_cmInstr.h" path="cmsis/core_cmInstr.h" type="1"/>
@@ -136,21 +136,21 @@
     <File name="cmsis_lib/include/stm32f4xx_exti.h" path="cmsis_lib/include/stm32f4xx_exti.h" type="1"/>
     <File name="cmsis_boot/system_stm32f4xx.c" path="cmsis_boot/system_stm32f4xx.c" type="1"/>
     <File name="usb_lib/core/usbd_usr.h" path="usb_lib/core/usbd_usr.h" type="1"/>
-    <File name="cust_lib/usb_printer.c" path="cust_lib/usb_printer.c" type="1"/>
     <File name="cmsis" path="" type="2"/>
+    <File name="cust_lib/usb_printer.c" path="cust_lib/usb_printer.c" type="1"/>
     <File name="cmsis_lib" path="" type="2"/>
     <File name="usb_lib/core/usbd_req.h" path="usb_lib/core/usbd_req.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_tim.c" path="cmsis_lib/source/stm32f4xx_tim.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_gpio.h" path="cmsis_lib/include/stm32f4xx_gpio.h" type="1"/>
     <File name="usb_lib/otg/usb_core.h" path="usb_lib/otg/usb_core.h" type="1"/>
-    <File name="usb_lib/core/usbd_ioreq.h" path="usb_lib/core/usbd_ioreq.h" type="1"/>
     <File name="syscalls" path="" type="2"/>
+    <File name="usb_lib/core/usbd_ioreq.h" path="usb_lib/core/usbd_ioreq.h" type="1"/>
     <File name="usb_lib/otg/usb_dcd.c" path="usb_lib/otg/usb_dcd.c" type="1"/>
     <File name="cmsis_lib/include/misc.h" path="cmsis_lib/include/misc.h" type="1"/>
     <File name="cmsis_lib/include" path="" type="2"/>
     <File name="usb_conf/usbd_desc.c" path="usb_conf/usbd_desc.c" type="1"/>
-    <File name="usb_lib/cdc/usbd_cdc_core.h" path="usb_lib/cdc/usbd_cdc_core.h" type="1"/>
     <File name="cust_lib/dh11_driver.h" path="cust_lib/dh11_driver.h" type="1"/>
+    <File name="usb_lib/cdc/usbd_cdc_core.h" path="usb_lib/cdc/usbd_cdc_core.h" type="1"/>
     <File name="main.c" path="main.c" type="1"/>
     <File name="usb_lib/cdc/usbd_cdc_vcp.h" path="usb_lib/cdc/usbd_cdc_vcp.h" type="1"/>
     <File name="cust_lib/cust_adc.h" path="cust_lib/cust_adc.h" type="1"/>

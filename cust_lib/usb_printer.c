@@ -22,6 +22,11 @@ void OTG_FS_WKUP_IRQHandler(void);
 
 
 // Почему-то линковщик ругается
+void usb_send_bytes(u8 *sendBuf, u32 size)
+{
+	VCP_send_buffer(sendBuf, size);
+}
+
 void usb_printer_printf(char* format, ...)
 {
 	static char usbOutputBuf[512] = { 0 };
