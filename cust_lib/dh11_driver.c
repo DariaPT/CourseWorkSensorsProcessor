@@ -11,9 +11,9 @@
 #include "dh11_driver.h"
 #include "math.h"
 
-#define GPIO_PORT	GPIOD
+#define GPIO_PORT	GPIOC
 #define GPIO_PIN	GPIO_Pin_1
-#define GPIO_RCC	RCC_AHB1Periph_GPIOD
+#define GPIO_RCC	RCC_AHB1Periph_GPIOC
 
 GPIO_InitTypeDef  GPIO_InitStructure;
 TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
@@ -21,7 +21,7 @@ TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
 void DHT11initTIM2(void){
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
 	TIM_TimeBaseStructure.TIM_Period = 72000000-1;//1us
-	TIM_TimeBaseStructure.TIM_Prescaler = 72;		//1us counter
+	TIM_TimeBaseStructure.TIM_Prescaler = 36;		//1us counter
 	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
 	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);

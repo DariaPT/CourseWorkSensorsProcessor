@@ -77,49 +77,33 @@ int main(void)
 
 	while (1)
 	{
-		/////////////////////////////////////
-//		uint8_t theByte;
-//		if (VCP_get_char(&theByte))
-//		{
-//			//	DHT11Read(&Rh,&RhDec,&Temp,&TempDec,&ChkSum);
-//			//			devPoint=dewPointFast(Temp,Rh);
-//
-//			static u32 value = 255;
-//			custPacket.temperature = value;
-//			custPacket.humidity = value;
-//			custPacket.light = value;
-//
-//			value++;
-//
-//			usb_send_bytes((u8*)&custPacket, sizeof(custPacket));
-//		}
-		///////////////////////////////////////
-
-		uint32_t timeSinceLastAdcPollSec = secSincePowerOn - lastAdcPollTimeSec;
-
-		if(timeSinceLastAdcPollSec >= ADC_POLL_PERIOD_SEC)
+		uint8_t theByte;
+		if (VCP_get_char(&theByte))
 		{
-			u16 adcRawValue = cust_adc_read_chan1();
+			DHT11Read(&Rh,&RhDec,&Temp,&TempDec,&ChkSum);
+			devPoint=dewPointFast(Temp,Rh);
 
+			u16 adcRawValue = cust_adc_read_chan1();
 			Pht_R = ((PHT_UP_R)/((4095.0)/adcRawValue-1));
-			/* internim calcs */
+
 			Pht_Div = PHT_10LX_R/Pht_R;
 			Pht_Temp = ((0.42*log(Pht_Div))/(PHT_GAMMA)) + 1;
-			/* illuminance calc */
-			// pow не работает
+
 			Pht_Lux = pow(10, Pht_Temp);
 
-//			DH T11Read(&Rh,&RhDec,&Temp,&TempDec,&ChkSum);
-//			devPoint=dewPointFast(Temp,Rh);
+			custPacket.temperature = Temp;
+			custPacket.humidity = Rh;
+			custPacket.light = Pht_Lux;
 
-//			sprintf(str, "Value= %dRh %d %dC %d %d %fDwP %fFah %fKel\r\n",Rh,RhDec,Temp,TempDec,ChkSum,devPoint,Fahrenheit(Temp),Kelvin(Temp));
+//			usb_printer_printf("t=%d;h=%d;l=%d\r\n", Temp, Rh,Pht_Lux);
+			usb_send_bytes((u8*)&custPacket, sizeof(custPacket));
+		}
 
-//			usb_printer_printf("1(V)=%.1f;\r\n", adcRawValue * 0.000806f, secSincePowerOn);
-//			usb_printer_printf("Value= %dRh %d %dC %d %d %fDwP %fFah %fKel\r\n", Rh,RhDec,Temp,TempDec,ChkSum,devPoint,Fahrenheit(Temp),Kelvin(Temp));
-
-//			usb_printer_printf("boom: %lu; tickers=%lu \r\n", get_timer_cnt(), ticker);
-			usb_printer_printf("Lux=%lu\r\n", Pht_Lux);
-
+		uint32_t timeSinceLastAdcPollSec = secSincePowerOn - lastAdcPollTimeSec;
+		if(timeSinceLastAdcPollSec >= ADC_POLL_PERIOD_SEC)
+		{
+			// Здесь можно добавить опрос по времени с последующим занесением в структуру.
+			// Чтобы данные были готовы заранее
 			lastAdcPollTimeSec = secSincePowerOn;
 		}
 	}
