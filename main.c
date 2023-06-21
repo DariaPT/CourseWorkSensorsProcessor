@@ -14,7 +14,7 @@
 #define ADC_POLL_PERIOD_SEC 2
 #define CUST_PACKET_SYMBOL 0xFFFF
 
-#define USE_BIG_ENDIAN_IN_PACK 1
+#define USE_BIG_ENDIAN_IN_PACK 0
 
 #define TILT_U16_BYTES(u16Value)\
 	((u16Value) >> 8 | (u16Value) << 8)
