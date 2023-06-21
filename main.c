@@ -14,6 +14,11 @@
 #define ADC_POLL_PERIOD_SEC 2
 #define CUST_PACKET_SYMBOL 0xFFFF
 
+#define USE_BIG_ENDIAN_IN_PACK 1
+
+#define TILT_U16_BYTES(u16Value)\
+	((u16Value) >> 8 | (u16Value) << 8)
+
 /* Photocell constants */
 #define PHT_UP_R 10000.0F
 #define PHT_10LX_R 50000.0F
@@ -91,9 +96,15 @@ int main(void)
 
 			Pht_Lux = pow(10, Pht_Temp);
 
+#if USE_BIG_ENDIAN_IN_PACK
+			custPacket.temperature = TILT_U16_BYTES(Temp);
+			custPacket.humidity = TILT_U16_BYTES(Rh);
+			custPacket.light = TILT_U16_BYTES(Pht_Lux);
+#else
 			custPacket.temperature = Temp;
 			custPacket.humidity = Rh;
 			custPacket.light = Pht_Lux;
+#endif
 
 //			usb_printer_printf("t=%d;h=%d;l=%d\r\n", Temp, Rh,Pht_Lux);
 			usb_send_bytes((u8*)&custPacket, sizeof(custPacket));
